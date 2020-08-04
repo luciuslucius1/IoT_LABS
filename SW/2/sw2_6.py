@@ -1,22 +1,18 @@
 import paho.mqtt.client as PahoMQTT
 import time
 
-broker_mqtt = "test.mosquitto.org"
-port_mqtt = 1883
-topic = "/Catalog"
+Broker_mqtt = "test.mosquitto.org"
+Port_mqtt = 1883
+Topic = "/Catalog"
 
 class MyMQTTPublisher:
 	def __init__(self, clientID, topic, broker, port):
 		self.clientID = clientID
-		# create an instance of paho.mqtt.client
 		self._paho_mqtt = PahoMQTT.Client(self.clientID, False) 
-		# register the callback
 		self._paho_mqtt.on_connect = self.myOnConnect
-		#self.messageBroker = 'mqtt.eclipse.org'
 		self.messageBroker = broker
 
 	def start (self):
-		#manage connection to broker
 		self._paho_mqtt.connect(self.messageBroker, port_mqtt)
 		self._paho_mqtt.loop_start()
 
@@ -25,7 +21,6 @@ class MyMQTTPublisher:
 		self._paho_mqtt.disconnect()
 
 	def myPublish(self, topic, message):
-		# publish a message with a certain topic
 		self._paho_mqtt.publish(topic, message, 2)
 		print("Message sent")
 
@@ -33,8 +28,8 @@ class MyMQTTPublisher:
 		print ("Connected to %s with result code: %d" % (self.messageBroker, rc))
 
 if __name__ == "__main__":
-	print(f"Connessione al broker: {broker_mqtt} alla porta: {port_mqtt}")
-	my_mqtt = MyMQTTPublisher("IoT device_publisher", topic, broker_mqtt, port_mqtt)
+	print(f"Connessione al broker: {Broker_mqtt} alla porta: {Port_mqtt}")
+	my_mqtt = MyMQTTPublisher("IoT device_publisher", Topic, Broker_mqtt, Port_mqtt)
 	my_mqtt.start()
 
 	done = False
@@ -44,5 +39,5 @@ if __name__ == "__main__":
         "end_points":[0, 1, 2]
         }
 	while True:
-		my_mqtt.myPublish(topic, str(device1))
+		my_mqtt.myPublish(Topic, str(device1))
 		time.sleep(5)
