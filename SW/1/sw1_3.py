@@ -12,10 +12,10 @@ def check_unit(oU, tU):
 
 def switcher(cl, cu):
     if cl == False:
-        return "Not all numbers in the list"
+        return json.dumps({"Error":"Few_Argument"})
     elif cu == False:
-        return "Unit passed not available"
-    return "Cannot convert from same units"
+        return json.dumps({"Error":"Wrong_unit"})
+    return json.dumps({"Error":"Same_unit"})
 
 
 def check_list(list):
