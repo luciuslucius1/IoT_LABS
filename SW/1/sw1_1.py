@@ -23,7 +23,7 @@ class MyWebServices(object):
                 "convertedValue":final_value,
                 "targetUnit":params.get("targetUnit")
                 }
-        return json.dumps(diz)
+        return diz
 
 def controllo_chiavi(chiavi):
     if len(chiavi)!=3:
