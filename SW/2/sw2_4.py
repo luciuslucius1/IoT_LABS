@@ -18,7 +18,7 @@ class WebServer(object):
         self.r.append(body)
 
     def GET(self, *uri, **params):
-        return self.r
+        return {"list":self.r}
 
 
 class IlMioThread (Thread):
