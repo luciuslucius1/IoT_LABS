@@ -76,6 +76,10 @@ if __name__ == "__main__":
 				}
 			]
 		}
+	#provare con questa versione di parametri e provare con la versione a parametri ridotti su hw 3.3
+	
+	
+	
 	while keep_going:
 		code = input("Inserire 0 per spegnere il led o 1 per accenderlo.")
 		if code == "0":
