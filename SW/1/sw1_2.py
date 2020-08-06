@@ -41,8 +41,9 @@ class MyWebServices(object):
 				for key in diz.keys():
 					diz[key] = ind[i]
 					i+=1
-				return json.dumps(diz)
+				return diz
                         else:
-				return "Valori passati non corretti"
+				return {"Error":"incorrect_value"}
 		else:
-			return "Nessuna richiesta"
+			return {"Error":"No_requests"}
+
