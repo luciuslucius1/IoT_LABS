@@ -28,8 +28,11 @@ class MySubscriber:
 		self._paho_mqtt.connect(self.messageBroker, 1883)
 		self._paho_mqtt.loop_start()
 		# subscribe for a topic
-		for t in self.topic:
-			self._paho_mqtt.subscribe(t, 2)
+		if type(self.topic)==str:
+			self._paho_mqtt.subscribe(self.topic, 2)
+		else:	
+			for t in self.topic:
+				self._paho_mqtt.subscribe(t, 2)
 
 	def stop (self):
 		self._paho_mqtt.unsubscribe(self.topic)
@@ -46,7 +49,7 @@ class MySubscriber:
 	def registerOnCatalog(self):
 		service = {
 			"Servizi": self.serviceId,
-		"descrizione": self.descrizione,
+			"descrizione": self.descrizione,
 			"end_points": self.end_points
 		}
 		requests.put("http://localhost:8080/services/add", json = service)
@@ -56,13 +59,13 @@ class MySubscriber:
 		info = json.loads(r.content.decode('utf-8'))
 		self.messageBroker = info["brokerIp"]
 		self.port = info["brokerPort"]
-		print(f"{self.port} {self.messageBroker}")
+		
 	
 	def getDeviceTopic(self, deviceId):
 		r = requests.get("http://localhost:8080/devices/search/"+deviceId)
 		info = json.loads(r.content.decode('utf-8'))
 		self.topic = info["end_points"]
-		print(self.topic)
+		
 
 
 
