@@ -172,9 +172,9 @@ class Broker:
 	def GET(self, *uri, **params):
 		""" ritorna tramite json il message broker e la porta utilizzati """
 		if uri[0]=="info":
-			return json.dumps({
+			return {
 				"brokerIp": self.broker,
 				"brokerPort": self.port
-				})
+				}
 		else:
 			raise cherrypy.HTTPError(400, "Bad request, try again.")
