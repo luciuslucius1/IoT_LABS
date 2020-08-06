@@ -12,10 +12,10 @@ def check_unit(oU, tU):
 
 def switcher(cl, cu):
     if cl == False:
-        return "Not all numbers in the list"
+        return {"ERROR":"FEW_ARGUMENTS"}
     elif cu == False:
-        return "Unit passed not available"
-    return "Cannot convert from same units"
+        return {"ERROR":"UNIT_ERROR"}
+    return {"ERROR":"SAME_UNIT"}
 
 
 def check_list(list):
@@ -66,9 +66,9 @@ class myWebServices(object):
             values = convert(list_values, originalUnit, targetUnit)
             if check_values(values):
                 json_body['convertedValue'] = values
-                return json.dumps(json_body)
+                return json_body
             else:
-                return json.dumps({"Error": "Values over absolute zero."})
+                return {"Error": "Values over absolute zero."}
         else:
             ret = switcher(cl, cu)
             return ret
