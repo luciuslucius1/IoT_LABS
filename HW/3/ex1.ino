@@ -98,7 +98,7 @@ void process(BridgeClient client){
       printTempResponse(client, 400);
     }
   }else{
-    printBadCommand(client, 400);
+    printBadCommand(client, 404);
   }
 }
 
