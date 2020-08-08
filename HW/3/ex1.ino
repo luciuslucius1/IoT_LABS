@@ -12,7 +12,7 @@ BridgeServer server;
 const int LED = 7;
 int led_value = LOW;
 
-const int capacity = JSON_OBJECT_SIZE(2)+JSON_ARRAY_SIZE(1)+JSON_OBJECT_SIZE(4)+40;
+const int capacity = JSON_OBJECT_SIZE(3)+JSON_ARRAY_SIZE(1)+JSON_OBJECT_SIZE(8);
 DynamicJsonDocument doc_snd(capacity);
 
 String senMlEncode(String res, float v, String unit){
