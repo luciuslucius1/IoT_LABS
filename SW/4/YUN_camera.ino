@@ -58,44 +58,7 @@ void printLCD(); //stampa le informazioni del controllore
 void changeSetPoints(); // cambia i set point
 
 DynamicJsonDocument doc_snd(JSON_OBJECT_SIZE(3)+ JSON_ARRAY_SIZE(1)+ JSON_OBJECT_SIZE(8));
-DynamicJsonDocument doc_rcv(JSON_OBJECT_SIZE(8));
-
-/*
-1) --> "/tiot/23/sw3/sub"
-msg=
-	{
-	"p":value
-	"v"=0
-	"set1": intero_di_8_cifre
-	"set2": intero_di_8_cifre
-	}	
-
-2) --> "/tiot/23/sw3/pub"
-msg = {
-      "bn": nome, 
-      "e": [
-        {
-        "n": "temperatura,serrande oppure boiler", 
-        "t": "null", 
-        "v": 0, 
-        "u": "null",
-          }
-        ]
-        }
-}
-
-
-const String pub_topic = "/tiot/23/sw3/pub";
-const String sub_topic = "/tiot/23/sw3/sub";
-const String catalog_topic="/tiot/23/catalog"
-VALE LO STESSO CHE PER I PIN
-*/
-
-
-
-
-
-
+DynamicJsonDocument doc_rcv(JSON_OBJECT_SIZE(2));
 
 void setup(){
  	pinMode(buzzerPin, OUTPUT);
@@ -251,7 +214,7 @@ void saveSetpoints(){
 }
 
 void registerOnCatalog(){
-  mqtt.publish("/tiot/23/sw4/reg", F("{\"deviceId\":\"Yun_Camera\",\"resorces\":\"lots\",\"end_points\":\"/tiot/23/catalog\"}"));
+  mqtt.publish("/tiot/23/sw4/reg", F("{\"deviceId\":\"Yun_Camera\",\"resorces\":\"lots\",\"end_points\":\"/tiot/23/pub\"}"));
 }
 
 void decodeCommand(const String& topic, const String& subtopic, const String& message){
